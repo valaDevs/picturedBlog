@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="cont">
+       
+    </div>
+    <script>
+        let url = "https://jsonplaceholder.typicode.com/photos"
+        let container = document.getElementById('cont')
+        async function getImages(){
+            let response = await fetch(url)
+            let data = await response.json()
+            data = data.slice(0,100)
+            data.forEach( post => {
+               container.innerHTML += `
+               <img src="${post.thumbnailUrl}">
+        <h1>${post.title}</h1>
+        <small>${post.id}</small>
+               `
+            })
+        }
+
+        getImages()
+    </script>
+</body>
+</html>
